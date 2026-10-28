@@ -1,0 +1,23 @@
+{
+  "author": "enonymous1",
+  "description": "Desktop-like web application built with Flask and Tailwind CSS",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "tailwindcss": "^3.4.17"
+  },
+  "keywords": [
+    "flask",
+    "desktop",
+    "web-app",
+    "tailwind"
+  ],
+  "license": "MIT",
+  "name": "spaces-web-app",
+  "scripts": {
+    "build": "npm run build-css && python freeze.py",
+    "build-css": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css",
+    "build-css:watch": "tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch",
+    "dev": "python app.py"
+  },
+  "version": "2.0.0"
+}

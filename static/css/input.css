@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Static Starfield Background */
+.static-starfield {
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(147,51,234,0.8), transparent),
+        radial-gradient(1px 1px at 200px 50px, rgba(147,51,234,0.4), transparent),
+        radial-gradient(2px 2px at 50px 120px, #fff, transparent),
+        radial-gradient(1px 1px at 180px 10px, rgba(255,255,255,0.7), transparent);
+    background-repeat: repeat;
+    background-size: 250px 150px;
+}
+
+/* Custom desktop styles */
+.desktop-item {
+    user-select: none;
+    transition: transform 0.1s ease;
+    z-index: 10;
+}
+
+.desktop-item:hover {
+    transform: scale(1.05);
+}
+
+.desktop-item.dragging {
+    opacity: 0.7;
+    transform: rotate(5deg);
+    z-index: 1000;
+}
+
+/* Window styles */
+.window {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(147, 51, 234, 0.3);
+    position: fixed;
+    resize: both;
+    overflow: auto;
+    min-width: 400px;
+    min-height: 300px;
+    z-index: 100;
+}
+
+.window.active {
+    z-index: 200;
+}
+
+.title-bar {
+    cursor: move;
+    user-select: none;
+}
+
+.title-bar:active {
+    cursor: grabbing;
+}
+
+.window-header {
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(147, 51, 234, 0.3);
+    cursor: move;
+    user-select: none;
+}
+
+.window-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.window-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.window-control:hover {
+    opacity: 0.8;
+}
+
+.window-control.close {
+    background-color: #ef4444;
+}
+
+.window-control.minimize {
+    background-color: #f59e0b;
+}
+
+.window-control.maximize {
+    background-color: #10b981;
+}
+
+/* Taskbar styles */
+.taskbar {
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(147, 51, 234, 0.3);
+}
+
+/* Context menu styles */
+.context-menu {
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(147, 51, 234, 0.3);
+}
+
+/* Folder Modal styles */
+.folder-modal-content {
+    background: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(147, 51, 234, 0.3);
+    resize: both;
+    overflow: hidden;
+    min-width: 600px;
+    min-height: 400px;
+}
+
+/* Taskbar animations */
+.taskbar-item {
+    transition: all 0.2s ease;
+}
+
+.taskbar-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Context menu */
+#context-menu {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Start menu animations */
+#start-menu {
+    transition: all 0.3s ease;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+#start-menu.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(147, 51, 234, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(147, 51, 234, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(147, 51, 234, 0.5);
+}

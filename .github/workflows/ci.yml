@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pytest ruff
+      - name: Lint
+        run: ruff check .
+      - name: Test
+        run: pytest
+      - name: Check desktop.js syntax
+        run: node --check static/js/desktop.js
+      - name: Build CSS and check it is committed up to date
+        run: |
+          npm ci
+          npm run build-css
+          git diff --exit-code -- static/css/output.css
+      - name: Freeze smoke test
+        run: |
+          python freeze.py
+          test -f build/index.html
+          test -f build/folder/Documents
+          if [ -e build/api ]; then echo "API routes must not be frozen" >&2; exit 1; fi
